@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { ThemeProvider } from "styled-components";
 
 // Styles
@@ -7,22 +7,33 @@ import {
   Title,
   Description,
   BooXImage,
-  BookListWrapper,
+  ThemeButton,
 } from "./styles";
 
 // Components
 import BookList from "./components/BookList";
 
-const theme = {
+const lightTheme = {
   mainColor: "black",
   backgroundColor: "white",
   crimson: "#DC143C",
 };
 
+const darkTheme = {
+  mainColor: "white",
+  backgroundColor: "black",
+  crimson: "#DC143C",
+};
+
 function App() {
+  const [theme, setTheme] = useState("light");
+  const toggleTheme = () => setTheme(theme === "light" ? "dark" : "light");
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
       <GlobalStyle />
+      <ThemeButton onClick={toggleTheme}>
+        {theme === "light" ? "Dark" : "Light"} Mode
+      </ThemeButton>
       <Title>BooX</Title>
       <BooXImage
         src="https://pbs.twimg.com/profile_images/1090824731752771584/yuJ1_jwV_400x400.jpg"
