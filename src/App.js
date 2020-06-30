@@ -1,39 +1,36 @@
 import React from "react";
-import styles from "./styles";
+import { ThemeProvider } from "styled-components";
+
+// Styles
+import {
+  GlobalStyle,
+  Title,
+  Description,
+  BooXImage,
+  BookListWrapper,
+} from "./styles";
+
+// Components
+import BookList from "./components/BookList";
+
+const theme = {
+  mainColor: "black",
+  backgroundColor: "white",
+  crimson: "#DC143C",
+};
 
 function App() {
   return (
-    <div>
-      <img
+    <ThemeProvider theme={theme}>
+      <GlobalStyle />
+      <Title>BooX</Title>
+      <BooXImage
         src="https://pbs.twimg.com/profile_images/1090824731752771584/yuJ1_jwV_400x400.jpg"
-        style={styles.logo}
+        alt="BooX Logo"
       />
-      <p style={{ textAlign: "center" }}>Where Books Are X'ed!</p>
-      <hr />
-      <h2>Meditations - Hardcover</h2>
-      <img
-        src="https://images-na.ssl-images-amazon.com/images/I/41lHhcjiDgL._SX311_BO1,204,203,200_.jpg"
-        style={styles.bookImage}
-      />
-      <p>Marcus Aurelius</p>
-      <p>$3.44</p>
-      <hr />
-      <h2>12 Rules For Life - Hardcover</h2>
-      <img
-        src="https://images-na.ssl-images-amazon.com/images/I/71qWDVkNMRL.jpg"
-        style={styles.bookImage}
-      />
-      <p>Jordan Peterson</p>
-      <p>$14.95</p>
-      <hr />
-      <h2>The Psychopath Test - Paperback</h2>
-      <img
-        src="https://images-na.ssl-images-amazon.com/images/I/71JYUXRW0cL.jpg"
-        style={styles.bookImage}
-      />
-      <p>Jon Ronson</p>
-      <p>$7.55</p>
-    </div>
+      <Description>Where Books Are X'ed!</Description>
+      <BookList />
+    </ThemeProvider>
   );
 }
 
